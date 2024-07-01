@@ -1,0 +1,37 @@
+/* Student.css */
+
+.student-details-container {
+    padding: 20px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .student-card {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .student-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .student-card p {
+    margin: 5px 0;
+  }
+  
+  .student-card h3 {
+    margin-top: 10px;
+  }
+  
+  .back-link {
+    display: block;
+    margin-top: 10px;
+  }
+  
