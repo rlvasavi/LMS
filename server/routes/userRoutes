@@ -1,0 +1,164 @@
+// userRoutes.js
+const express = require('express');
+const User = require('../models/User');
+
+const Book = require('../models/Book.js');
+const router = express.Router();
+const session = require('express-session');
+
+// Middleware to parse JSON bodies
+router.use(express.json());
+
+// Configure session
+router.use(session({
+  secret: 'qwertyuiopasdfghjklzxcvbnm',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+// Create a new user
+router.post('/user', async (req, res) => {
+  const { name, Id, gender, email, password } = req.body;
+  try {
+    const user = new User({ name, Id, gender, email, password });
+    await user.save();
+    res.status(201).send(user);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+// Get all users
+router.get('/user', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.send(users);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+// Get a user by ID
+router.get('/user/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).send();
+    }
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+// Update a user by ID
+router.put('/user/:id', async (req, res) => {
+  const { name, Id, gender, email, password } = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, { name, Id, gender, email, password }, { new: true });
+    if (!user) {
+      return res.status(404).send();
+    }
+    res.send(user);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+// Delete a user by ID
+router.delete('/user/:id', async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).send();
+    }
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.post('/user/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    // Compare the plain text password
+    if (password !== user.password) {
+      return res.status(400).send('Invalid credentials');
+    }
+
+    // Save user info in session
+    req.session.userId = user._id;
+    res.send({ message: 'Login successful' });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+// User logout route
+router.post('/user/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.send({ message: 'Logout successful' });
+  });
+});
+
+
+// View all books
+router.get('/books', async (req, res) => {
+  try {
+    const books = await Book.find();
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Add a new book
+// Example console log in your POST route
+router.post('/books', async (req, res) => {
+  console.log('Request Body:', req.body); // Check if req.body contains expected data
+
+  try {
+    const { bookId, bookName, author, level, genre, quantity, location } = req.body;
+    const newBook = new Book({ bookId, bookName, author, level, genre, quantity, location });
+    const savedBook = await newBook.save();
+    res.status(201).json(savedBook);
+  } catch (err) {
+    console.error('Error saving book:', err); // Add error logging
+    res.status(400).json({ message: err.message });
+  }
+});
+
+
+// Delete a book
+router.delete('/books/:id', async (req, res) => {
+  try {
+    const deletedBook = await Book.findByIdAndDelete(req.params.id);
+    if (!deletedBook) throw new Error('Book not found');
+    res.json({ message: 'Book deleted' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Update book level
+router.patch('/books/:id/level', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { level } = req.body;
+    const book = await Book.findByIdAndUpdate(id, { $set: { level } }, { new: true });
+    if (!book) throw new Error('Book not found');
+    res.json(book);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+module.exports = router;
