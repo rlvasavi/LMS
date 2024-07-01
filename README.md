@@ -54,6 +54,7 @@ This will start both the backend server and the frontend development.
 
 
 ## Technologies Used
-Frontend: React.js, Axios, React Router DOM
-Backend: Node.js, Express.js, MongoDB
-Deployment: Localhost (for development)
+
+- Frontend: React.js, Axios, React Router DOM
+- Backend: Node.js, Express.js, MongoDB
+- Deployment: Localhost (for development)
