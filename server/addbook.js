@@ -12,86 +12,286 @@ mongoose.connect('mongodb://localhost:27017/jp', {
 // Sample books data
 const sampleBooks = [
   {
-    bookId: 1,
-    bookName: 'To Kill a Mockingbird',
-    author: 'Harper Lee',
-    level: 1,
-    genre: 'Fiction',
-    quantity: 10,
-    location: 'A1'
-  },
-  {
-    bookId: 2,
-    bookName: '1984',
-    author: 'George Orwell',
-    level: 2,
-    genre: 'Dystopian Fiction',
-    quantity: 8,
-    location: 'A2'
-  },
-  {
-    bookId: 3,
-    bookName: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    level: 1,
-    genre: 'Classic Literature',
-    quantity: 12,
-    location: 'B1'
-  },
-  {
-    bookId: 4,
-    bookName: 'Pride and Prejudice',
-    author: 'Jane Austen',
-    level: 1,
-    genre: 'Romantic Fiction',
-    quantity: 15,
-    location: 'B2'
-  },
-  {
-    bookId: 5,
-    bookName: 'Brave New World',
-    author: 'Aldous Huxley',
-    level: 3,
-    genre: 'Science Fiction',
-    quantity: 6,
-    location: 'C1'
-  },
-  {
-    bookId: 6,
-    bookName: 'The Catcher in the Rye',
-    author: 'J.D. Salinger',
-    level: 2,
-    genre: 'Coming-of-age Fiction',
-    quantity: 10,
-    location: 'C2'
-  },
-  {
-    bookId: 7,
-    bookName: 'Lord of the Flies',
-    author: 'William Golding',
-    level: 2,
-    genre: 'Adventure Fiction',
-    quantity: 8,
-    location: 'D1'
-  },
-  {
-    bookId: 8,
-    bookName: 'The Hobbit',
-    author: 'J.R.R. Tolkien',
-    level: 3,
-    genre: 'Fantasy',
-    quantity: 10,
-    location: 'D2'
-  },
-  {
-    bookId: 9,
-    bookName: 'Moby-Dick',
-    author: 'Herman Melville',
-    level: 3,
-    genre: 'Adventure Fiction',
-    quantity: 7,
-    location: 'E1'
-  },
+    
+      "bookId": 10,
+      "bookName": "Junie B. Jones",
+      "author": "Barbara Park",
+      "level": 1,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "B4"
+      },
+      {
+      "bookId": 11,
+      "bookName": "Magic Tree House",
+      "author": "Mary Pope Osborne",
+      "level": 2,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "B5"
+      },
+      {
+      "bookId": 12,
+      "bookName": "Judy Moody",
+      "author": "Megan McDonald",
+      "level": 3,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "B6"
+      },
+      {
+      "bookId": 13,
+      "bookName": "Diary of a Wimpy Kid",
+      "author": "Jeff Kinney",
+      "level": 4,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "C1"
+      },
+      {
+      "bookId": 14,
+      "bookName": "Harry Potter and the Sorcerer's Stone",
+      "author": "J.K. Rowling",
+      "level": 5,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "C2"
+      },
+      {
+      "bookId": 15,
+      "bookName": "The Hunger Games",
+      "author": "Suzanne Collins",
+      "level": 6,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "C3"
+      },
+      {
+      "bookId": 16,
+      "bookName": "The Fault in Our Stars",
+      "author": "John Green",
+      "level": 1,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "C4"
+      },
+      {
+      "bookId": 17,
+      "bookName": "The Giver",
+      "author": "Lois Lowry",
+      "level": 2,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "C5"
+      },
+      {
+      "bookId": 18,
+      "bookName": "Divergent",
+      "author": "Veronica Roth",
+      "level": 3,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "C6"
+      },
+      {
+      "bookId": 19,
+      "bookName": "The Maze Runner",
+      "author": "James Dashner",
+      "level": 4,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "D1"
+      },
+      {
+      "bookId": 20,
+      "bookName": "The Book Thief",
+      "author": "Markus Zusak",
+      "level": 5,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "D2"
+      },
+      {
+      "bookId": 21,
+      "bookName": "The Graveyard Book",
+      "author": "Neil Gaiman",
+      "level": 6,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "D3"
+      },
+      {
+      "bookId": 22,
+      "bookName": "The Outsiders",
+      "author": "S.E. Hinton",
+      "level": 5,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "D4"
+      },
+      {
+      "bookId": 23,
+      "bookName": "The Perks of Being a Wallflower",
+      "author": "Stephen Chbosky",
+      "level": 4,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "D5"
+      },
+      {
+      "bookId": 24,
+      "bookName": "The Hate U Give",
+      "author": "Angie Thomas",
+      "level": 3,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "D6"
+      },
+      {
+      "bookId": 25,
+      "bookName": "Eleanor & Park",
+      "author": "Rainbow Rowell",
+      "level": 2,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "E1"
+      },
+      {
+      "bookId": 26,
+      "bookName": "The Kite Runner",
+      "author": "Khaled Hosseini",
+      "level": 1,
+      "genre": "Fiction",
+      "quantity": 10,
+      "location": "E2"
+      },
+      {
+      "bookId": 27,
+      "bookName": "The Book of Joy",
+      "author": "Dalai Lama, Desmond Tutu",
+      "level": 2,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "E3"
+      },
+      {
+      "bookId": 28,
+      "bookName": "Born a Crime",
+      "author": "Trevor Noah",
+      "level": 1,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "E4"
+      },
+      {
+      "bookId": 29,
+      "bookName": "Educated",
+      "author": "Tara Westover",
+      "level": 1,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "E5"
+      },
+      {
+      "bookId": 30,
+      "bookName": "The Immortal Life of Henrietta Lacks",
+      "author": "Rebecca Skloot",
+      "level": 2,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "E6"
+      },
+      {
+      "bookId": 31,
+      "bookName": "Unbroken",
+      "author": "Laura Hillenbrand",
+      "level": 2,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "F1"
+      },
+      {
+      "bookId": 32,
+      "bookName": "The Devil in the White City",
+      "author": "Erik Larson",
+      "level": 3,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "F2"
+      },
+      {
+      "bookId": 33,
+      "bookName": "The Omnivore's Dilemma",
+      "author": "Michael Pollan",
+      "level": 4,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "F3"
+      },
+      {
+      "bookId": 34,
+      "bookName": "Guns, Germs, and Steel",
+      "author": "Jared Diamond",
+      "level": 5,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "F4"
+      },
+      {
+      "bookId": 35,
+      "bookName": "Sapiens",
+      "author": "Yuval Noah Harari",
+      "level": 6,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "F5"
+      },
+      {
+      "bookId": 36,
+      "bookName": "The Power of Habit",
+      "author": "Charles Duhigg",
+      "level": 3,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "F6"
+      },
+      {
+      "bookId": 37,
+      "bookName": "Daring Greatly",
+      "author": "Brené Brown",
+      "level": 4,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "G1"
+      },
+      {
+      "bookId": 38,
+      "bookName": "The Life-Changing Magic of Tidying Up",
+      "author": "Marie Kondo",
+      "level": 2,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "G2"
+      },
+      {
+      "bookId": 39,
+      "bookName": "The 7 Habits of Highly Effective People",
+      "author": "Stephen R. Covey",
+      "level": 1,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "G3"
+      },
+      {
+      "bookId": 40,
+      "bookName": "Atomic Habits",
+      "author": "James Clear",
+      "level": 1,
+      "genre": "Non-Fiction",
+      "quantity": 10,
+      "location": "G4"
+      }
+    
   // Add more books here as needed
 ];
 

@@ -34,8 +34,8 @@
   }
   
   .student-card button {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #ced3d8;
+    color: #000000;
     border: none;
     border-radius: 4px;
     padding: 6px 12px;
@@ -43,7 +43,7 @@
   }
   
   .student-card button:hover {
-    background-color: #0056b3;
+    background-color: #7c8590;
   }
   
   .student-card select {
@@ -52,3 +52,43 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+
+  .add-student-form {
+    margin-bottom: 20px;
+  }
+  
+  .add-student-form form,
+  .search-student-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .add-student-form input,
+  .search-student-form input {
+    padding: 8px;
+    margin-right: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .add-student-form button,
+  .search-student-form button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .add-student-form button:disabled,
+  .search-student-form button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

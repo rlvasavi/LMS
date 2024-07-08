@@ -69,7 +69,10 @@ const Books = () => {
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/books')
-      .then(response => setBooks(response.data))
+      .then(response => {
+        const sortedBooks = response.data.sort((a, b) => a.bookId - b.bookId); // Sort books by bookId
+        setBooks(sortedBooks);
+      })
       .catch(error => console.error('Error fetching books:', error));
   }, []);
 

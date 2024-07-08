@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Books from './components/Books';
 import CreateBook from './components/CreateBook';
 import Students from './components/Students';
+import Dashboard from './components/Dashboard';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/books" element={<Books />} />
           <Route path="/createbook" element={<CreateBook />} />
           <Route path="/students" element={<Students/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
         </Routes>
       </div>
     </Router>

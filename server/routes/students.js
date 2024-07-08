@@ -3,6 +3,33 @@ const router = express.Router();
 const Student = require('../models/student');
 const Book = require('../models/Book'); // Ensure correct file name
 
+
+router.get('/top5', async (req, res) => {
+  try {
+    const students = await Student.find().sort({ level: -1 }).limit(5).exec();
+    res.json(students);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
+router.post('/', async (req, res) => {
+  const student = new Student({
+    name: req.body.name,
+    level: 1, // Default level
+    currentCheckIn: [],
+    historyCheckouts: []
+  });
+
+  try {
+    const newStudent = await student.save();
+    res.status(201).json(newStudent);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
 // GET all students with details
 router.get('/', async (req, res) => {
   try {
@@ -31,6 +58,12 @@ router.post('/:id/checkin', getStudent, async (req, res) => {
     res.student.currentCheckIn.push({ book: book._id });
     await res.student.save();
 
+    // Decrease book quantity
+    if (book.quantity > 0) {
+      book.quantity -= 1;
+      await book.save();
+    }
+
     res.json(res.student);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -48,6 +81,12 @@ router.delete('/:id/checkout/:checkoutId', getStudent, async (req, res) => {
     const checkout = res.student.currentCheckIn[checkoutIndex];
     res.student.currentCheckIn.splice(checkoutIndex, 1);
     res.student.historyCheckouts.push(checkout);
+
+    // Check if history checkouts reach 4 and increment level if necessary
+    if (res.student.historyCheckouts.length % 4 === 0) {
+      res.student.level += 1;
+    }
+
     await res.student.save();
 
     // Increase book quantity
@@ -71,8 +110,17 @@ router.delete('/:id/current/:checkoutId', getStudent, async (req, res) => {
     const checkoutIndex = res.student.currentCheckIn.findIndex(item => item._id == checkoutId);
     if (checkoutIndex === -1) return res.status(404).json({ message: 'Checkout item not found' });
 
+    const checkout = res.student.currentCheckIn[checkoutIndex];
     res.student.currentCheckIn.splice(checkoutIndex, 1);
+
     await res.student.save();
+
+    // Increase book quantity
+    const book = await Book.findById(checkout.book);
+    if (book) {
+      book.quantity += 1;
+      await book.save();
+    }
 
     res.json(res.student);
   } catch (err) {
@@ -94,5 +142,7 @@ async function getStudent(req, res, next) {
     return res.status(500).json({ message: err.message });
   }
 }
+
+
 
 module.exports = router;

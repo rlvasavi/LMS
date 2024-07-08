@@ -7,13 +7,16 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/home" className="navbar-logo">
-          Home
+          R2R
         </Link>
         <div className="menu-icon">
           {"<=======>"}
         </div>
         <div className="navbar-menu">
           <ul className="navbar-items">
+          <li className="navbar-item">
+              <Link to="/dashboard" className="navbar-link">   Dashboard   </Link>
+            </li>
           <li className="navbar-item">
               <Link to="/students" className="navbar-link">   Students   </Link>
             </li>

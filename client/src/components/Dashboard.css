@@ -1,0 +1,52 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Adjust height to fill the viewport */
+  }
+  
+  .content {
+    flex: 1;
+    padding: 1rem;
+    background-color: #faebd7; /* Set the content background color */
+    border-radius: 8px; /* Optional: Add some border radius for better visuals */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for depth */
+    margin: 1rem; /* Optional: Add margin to separate from the navbar */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+  }
+  
+  /* Media Query for Responsive Design */
+  @media (max-width: 768px) {
+    .content {
+      margin: 0.5rem;
+    }
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-rows: repeat(2, 1fr); /* 2 equal rows */
+    gap: 10px; /* Optional: Add space between grid items */
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .item1 {
+    grid-column: span 2; /* Span across 2 columns */
+    border-radius: 10px;
+  }
+  
+  .item2, .item3, .item4, .item5 {
+    grid-column: span 1; /* Default: Span 1 column */
+    border-radius: 10px;
+  }
+  
+  /* Optional: Styling for grid items */
+  .grid-container > div {
+    background-color: rgba(214, 221, 225, 0.442); /* Grey background for items */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(92, 75, 75);
+    font-size: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Ensure all grid items have rounded corners */
+  }

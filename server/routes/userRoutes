@@ -1,7 +1,7 @@
 // userRoutes.js
 const express = require('express');
 const User = require('../models/User');
-
+const Student = require('../models/student');
 const Book = require('../models/Book.js');
 const router = express.Router();
 const session = require('express-session');
@@ -160,5 +160,89 @@ router.patch('/books/:id/level', async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+
+router.get('/books/count-by-level', async (req, res) => {
+  try {
+    const counts = await Book.aggregate([
+      { $group: { _id: '$level', count: { $sum: 1 } } },
+      { $sort: { _id: 1 } } // Optionally sort by level
+    ]);
+    res.json(counts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get('/books/count-by-genre', async (req, res) => {
+  try {
+    const counts = await Book.aggregate([
+      { $group: { _id: '$genre', count: { $sum: 1 } } },
+      { $sort: { _id: 1 } } // Optionally sort by genre
+    ]);
+    res.json(counts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
+router.get('/books/checkouts-by-level', async (req, res) => {
+  try {
+    const checkoutsByLevel = await Book.aggregate([
+      {
+        $lookup: {
+          from: 'students',
+          localField: '_id',
+          foreignField: 'historyCheckouts.book',
+          as: 'students'
+        }
+      },
+      {
+        $unwind: '$students'
+      },
+      {
+        $group: {
+          _id: '$level',
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $sort: { _id: 1 }
+      }
+    ]);
+    res.json(checkoutsByLevel);
+  } catch (err) {
+    console.error('Error fetching checkouts by level:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
+router.get('/books/top-5', async (req, res) => {
+  try {
+    const topBooks = await Student.aggregate([
+      { $unwind: '$historyCheckouts' },
+      { $group: { _id: '$historyCheckouts.book', count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 5 },
+      {
+        $lookup: {
+          from: 'books',
+          localField: '_id',
+          foreignField: '_id',
+          as: 'book'
+        }
+      },
+      { $unwind: '$book' },
+      { $project: { _id: 0, bookId: '$_id', title: '$book.bookName', author: '$book.author', count: 1 } }
+    ]);
+
+    res.json(topBooks);
+  } catch (err) {
+    console.error('Error fetching top books:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 
 module.exports = router;
