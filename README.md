@@ -1,5 +1,3 @@
-# OBS
-
 # MERN Book Management System
 
 This is a MERN (MongoDB, Express, React, Node.js) application for managing a book inventory. 
