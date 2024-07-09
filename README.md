@@ -1,4 +1,4 @@
-# MERN Book Management System
+# MERN Library Management System
 
 This is a MERN (MongoDB, Express, React, Node.js) application for managing a book inventory. 
 
