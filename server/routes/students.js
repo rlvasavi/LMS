@@ -4,6 +4,43 @@ const Student = require('../models/student');
 const Book = require('../models/Book'); // Ensure correct file name
 
 
+router.get('/overdue', async (req, res) => {
+  try {
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+    const students = await Student.aggregate([
+      { $unwind: '$currentCheckIn' },
+      { $match: { 'currentCheckIn.checkedOutAt': { $lte: sevenDaysAgo } } },
+      {
+        $lookup: {
+          from: 'books',
+          localField: 'currentCheckIn.book',
+          foreignField: '_id',
+          as: 'bookDetails'
+        }
+      },
+      { $unwind: '$bookDetails' },
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          level: 1,
+          'currentCheckIn.checkedOutAt': 1,
+          'bookDetails.bookName': 1
+        }
+      }
+    ]);
+
+    res.json(students);
+  } catch (err) {
+    console.error('Error fetching overdue students:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
+
 router.get('/top5', async (req, res) => {
   try {
     const students = await Student.find().sort({ level: -1 }).limit(5).exec();

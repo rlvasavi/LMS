@@ -6,11 +6,11 @@ This is a MERN (MongoDB, Express, React, Node.js) application for managing a boo
 ### Prerequisites
 - Node.js
 - MongoDB
+- VS CODE
 
 ### Installation
  Clone the repository:
  ```
- cd OBS
  cd server
  npm install
  node server.js

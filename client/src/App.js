@@ -9,6 +9,7 @@ import Books from './components/Books';
 import CreateBook from './components/CreateBook';
 import Students from './components/Students';
 import Dashboard from './components/Dashboard';
+import Alerts from './components/Alerts';
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<Dashboard />} />
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
@@ -25,6 +26,7 @@ function App() {
           <Route path="/createbook" element={<CreateBook />} />
           <Route path="/students" element={<Students/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/alert" element={<Alerts/>}/>
         </Routes>
       </div>
     </Router>
