@@ -183,6 +183,8 @@ const Students = () => {
           disabled={loading}
         />
       </div>
+      <h3 className="level-info">For Every 4 Checkouts Level Of Student Increases</h3>
+
       <div className="students-container">
         {filteredStudents.map((student) => (
           <div key={student._id} className="student-card">

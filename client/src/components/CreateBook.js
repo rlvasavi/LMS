@@ -69,6 +69,7 @@ const CreateBook = () => {
           </label>
           <button type="submit" style={styles.button}>Add Book</button>
         </form>
+        <a href='/books'>Go Back</a>
       </div>
     </div>
   );

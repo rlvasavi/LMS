@@ -3,6 +3,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
+  .level-info {
+    color: red;
+  }
   
   .student-card {
     width: 30%;

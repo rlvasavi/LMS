@@ -124,8 +124,8 @@ const Books = () => {
               <td style={styles.td}>{book.author}</td>
               <td style={{ ...styles.td, ...styles.levelCell }}>
                 {book.level}
-                <button onClick={() => updateBookLevel(book._id, book.level + 1)} style={styles.levelButton}>Increase</button>
-                <button onClick={() => updateBookLevel(book._id, book.level - 1)} style={styles.levelButton}>Decrease</button>
+                <button onClick={() => updateBookLevel(book._id, book.level + 1)} style={styles.levelButton}>+</button>
+                <button onClick={() => updateBookLevel(book._id, book.level - 1)} style={styles.levelButton}>-</button>
               </td>
               <td style={styles.td}>{book.genre}</td>
               <td style={styles.td}>{book.quantity}</td>
