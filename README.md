@@ -56,3 +56,6 @@ This will start both the backend server and the frontend development.
 - Frontend: React.js, Axios, React Router DOM
 - Backend: Node.js, Express.js, MongoDB
 - Deployment: Localhost (for development)
+
+## Video
+  https://github.com/rlvasavi/LMS/blob/main/LMS.mp4
