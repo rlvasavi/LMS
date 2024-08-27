@@ -126,7 +126,7 @@ const Register = () => {
         {success && <p style={{ color: 'green', marginBottom: '10px' }}>Registration successful. Please log in.</p>}
         <button type="submit" style={{ padding: '10px', fontSize: '16px', cursor: 'pointer' }}>Register</button>
       </form>
-      Have A Account : <a href='/'>Go Back To Login</a>
+      Have An Account : <a href='/'>Go Back To Login</a>
     </div>
   );
 };
